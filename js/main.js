@@ -9,11 +9,14 @@ function preload() {
 function setup() {
 	console.log('this is the setup from main.js')
 	createCanvas(width, heigth)
+    game.setup()
 }
 
 function draw() {
 	game.draw()
 }
 
-function keyPressed() {
+function mouseClicked() {
+    game.shoot()
+    game.hit()
 }
