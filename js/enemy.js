@@ -1,20 +1,20 @@
 class Enemy {
-    constructor(){
-        this.enemyWidth = 200
-        this.enemyHeigth = 200
+    constructor(width, heigth, image, speed){
+        this.enemyWidth = width
+        this.enemyHeigth = heigth
 
-        this.enemyImage
+        this.enemyImage = image
         this.enemyFlightDirection = Math.round(Math.random())
 
         if (this.enemyFlightDirection === 0) {
             this.enemyPositionX = 0 - this.enemyWidth
         } else {
-            this.enemyPositionX = width
+            this.enemyPositionX = gameWidth
         }
 
         this.enemyPositionY = random(500)
         
-        this.enemySpeed = 3
+        this.enemySpeed = speed
 
         this.enemyCenterPosX = this.enemyPositionX + this.enemyWidth/2
         this.enemyCenterPosY = this.enemyPositionY + this.enemyHeigth/2
@@ -36,7 +36,7 @@ class Enemy {
             this.enemyPositionX -= 1 * this.enemySpeed
         }
 
-        image(game.enemyImage, this.enemyPositionX, this.enemyPositionY, this.enemyWidth, this.enemyHeigth)
+        image(this.enemyImage, this.enemyPositionX, this.enemyPositionY, this.enemyWidth, this.enemyHeigth)
 
 
         // console.log(`Enemy PositionX: ${this.enemyPositionX}`);

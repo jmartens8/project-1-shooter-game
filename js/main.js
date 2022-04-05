@@ -8,7 +8,7 @@ function preload() {
 
 function setup() {
 	console.log('this is the setup from main.js')
-	createCanvas(width, heigth)
+	createCanvas(gameWidth, gameHeigth)
     game.setup()
 }
 

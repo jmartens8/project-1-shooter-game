@@ -1,2 +1,2 @@
-const heigth = 1000
-const width = 1600
+const gameHeigth = 1000
+const gameWidth = 1600
