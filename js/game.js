@@ -4,6 +4,7 @@ class Game {
         this.background
         this.enemiesEasy = []
         this.timer = 0 // Standard frame rate is 40 fps
+        this.ammo = 12
     }
 
     setup() {
@@ -86,23 +87,39 @@ class Game {
 		// console.log(this.enemiesEasy.length)
     }
 
-    // shoot(){
-    //     console.log(`x: ${mouseX} / y: ${mouseY}`)
-    // }
+    shoot(){
+        console.log(`x: ${mouseX} / y: ${mouseY}`)
+        // every shot costs one ammo
+        this.ammo --
+
+        //play gunfire sound if ammo is not 0, otherwise play empty gun sound
+        if (this.ammo > 0){ 
+        this.soundGunFire.play()
+        }
+        else {this.soundGunEmpty.play()
+        }
+    }
+
+    reload(){
+        this.ammo = 12
+        this.soundReload.play()
+    }
 
     hit(){
         console.log(this.enemiesEasy);
         
         // clear dead enemies from array
-        this.enemiesEasy = this.enemiesEasy.filter(enemy => {
-            if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
-                console.log('Treffer ;)')
-                return false
-            } else {
-                console.log('Daneben!')
-                return true
-            }
-        }) 
+        if (this.ammo > 0){
+            this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+                if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
+                    console.log('Treffer ;)')
+                    return false
+                } else {
+                    console.log('Daneben!')
+                    return true
+                }
+            }) 
+        }
     }
 
     preload() {
@@ -110,5 +127,8 @@ class Game {
         this.enemyImageEasy = loadImage('/assets/Lizard_1.png')
         this.enemyImageMedium = loadImage('/assets/Sheep_1.png')
         this.enemyImageHard = loadImage('/assets/Spider_1.png')
+        this.soundGunFire = loadSound('/assets/sounds/laser-gun-19sf.mp3')
+        this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
+        this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
     }
 }

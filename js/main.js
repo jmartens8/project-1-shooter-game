@@ -18,4 +18,11 @@ function draw() {
 
 function mouseClicked() {
     game.hit()
+	game.shoot()
+}
+
+function keyPressed(){
+	if (keyCode === 82){
+		game.reload()
+	}
 }
