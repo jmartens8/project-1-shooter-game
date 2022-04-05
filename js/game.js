@@ -3,6 +3,7 @@ class Game {
     constructor() {
         this.background
         this.enemiesEasy = []
+       
         // this.leftBorder = 0
         // this.rightBorder = width
         // this.topBorder = 0
@@ -18,6 +19,8 @@ class Game {
         // draw background
         image(this.background, 0, 0, width, heigth)
 
+        cursor('/assets/crosshair177.png', 64, 64)
+
         // Hilfslinien:
         this.enemiesEasy.forEach(function(enemy){
             line(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY)
@@ -32,16 +35,6 @@ class Game {
 		this.enemiesEasy.forEach(function (enemy) {
 			enemy.draw()
 		})
-
-        // clear dead enemies or enemies out of sight
-        // this.enemiesEasy = this.enemiesEasy.filter(enemy => {
-		// 	if (enemy.enemyPositionX < (0 - enemy.enemyWidth)) {
-		// 		return false
-		// 	} 
-        //     else {
-		// 		return true
-		// 	}
-		// })
 
         // clear dead enemies or enemies out of sight
         this.enemiesEasy = this.enemiesEasy.filter(enemy => {

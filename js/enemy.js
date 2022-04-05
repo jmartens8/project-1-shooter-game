@@ -14,7 +14,7 @@ class Enemy {
 
         this.enemyPositionY = random(500)
         
-        this.enemySpeed = 10
+        this.enemySpeed = 3
 
         this.enemyCenterPosX = this.enemyPositionX + this.enemyWidth/2
         this.enemyCenterPosY = this.enemyPositionY + this.enemyHeigth/2
