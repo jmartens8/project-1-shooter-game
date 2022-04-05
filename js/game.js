@@ -3,10 +3,10 @@ class Game {
     constructor() {
         this.background
         this.enemiesEasy = []
-        this.leftBorder = 0
-        this.rightBorder = width
-        this.topBorder = 0
-        this.buttomBorder = heigth
+        // this.leftBorder = 0
+        // this.rightBorder = width
+        // this.topBorder = 0
+        // this.buttomBorder = heigth
     }
 
     setup() {
@@ -18,7 +18,7 @@ class Game {
         // draw background
         image(this.background, 0, 0, width, heigth)
 
-        //hier vielleicht ausklammern?!::
+        // Hilfslinien:
         this.enemiesEasy.forEach(function(enemy){
             line(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY)
         })
@@ -27,19 +27,49 @@ class Game {
         if (frameCount % 40 === 0) {
 			// add an enemy to the enemyEasy array
 			this.enemiesEasy.push(new Enemy(this.enemyImage))
+            console.log('enemy added');
 		}
 		this.enemiesEasy.forEach(function (enemy) {
 			enemy.draw()
 		})
 
         // clear dead enemies or enemies out of sight
+        // this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+		// 	if (enemy.enemyPositionX < (0 - enemy.enemyWidth)) {
+		// 		return false
+		// 	} 
+        //     else {
+		// 		return true
+		// 	}
+		// })
+
+        // clear dead enemies or enemies out of sight
         this.enemiesEasy = this.enemiesEasy.filter(enemy => {
-			if (enemy.enemyPositionX < (0 - enemy.enemyWidth)) {
+            // check flight LtR - right border 
+			if (enemy.enemyFlightDirection === 0 && enemy.enemyPositionX > (width)) {
 				return false
 			} 
-            else {
-				return true
+            // check flight LtR - top border
+            else if (enemy.enemyFlightDirection === 0 && enemy.enemyPositionY < (0 - enemy.enemyHeight)) {
+				return false
 			}
+            // check flight LtR - buttom border
+            else if (enemy.enemyFlightDirection === 0 && enemy.enemyPositionY > (heigth)) {
+				return false
+			}
+            // check flight RtL - left border
+            else if (enemy.enemyFlightDirection === 1 && enemy.enemyPositionX < (0 - enemy.enemyWidth)) {
+				return false
+			}
+            // check flight RtL - top border
+            else if (enemy.enemyFlightDirection === 1 && enemy.enemyPositionY < (0 - enemy.enemyHeight)) {
+				return false
+			}
+            // check flight RtL - buttom border
+            else if (enemy.enemyFlightDirection === 1 && enemy.enemyPositionY > (heigth)) {
+				return false
+			}
+            else return true
 		})
 
 		console.log(this.enemiesEasy.length)
@@ -52,26 +82,6 @@ class Game {
     hit(){
         console.log(this.enemiesEasy);
         
-        // this.enemiesEasy.forEach(function(enemy){
-        //     let distanceToEnemy = dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY);
-    
-        //     if (distanceToEnemy < enemy.hitBoxRadius){
-        //         enemy.enemyHit = true 
-        //         console.log('Treffer ;)');
-
-        //         game.enemiesEasy = game.enemiesEasy.filter(enemy => {
-        //             if (enemy.enemyHit === true) {
-        //                 return false
-        //             } else {
-        //                 return true
-        //             }
-        //         })
-        //     } else {
-        //         console.log('Daneben!');
-        //     }
-        // })  
-
-        // kürzere Version:
         this.enemiesEasy = this.enemiesEasy.filter(enemy => {
             if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
                 console.log('Treffer ;)')
