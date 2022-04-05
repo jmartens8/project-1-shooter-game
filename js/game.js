@@ -1,8 +1,8 @@
 
 class Game {
     constructor() {
-        
         this.background
+        this.enemiesEasy = []
     }
 
     setup() {
@@ -11,30 +11,72 @@ class Game {
 
     draw() {
         clear()
+        // draw background
         image(this.background, 0, 0, width, heigth)
-        this.enemy.draw()
-        line(this.enemy.enemyCenterPosX, this.enemy.enemyCenterPosY, mouseX, mouseY)
+
+        //hier vielleicht ausklammern?!::
+        this.enemiesEasy.forEach(function(enemy){
+            line(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY)
+        })
+
+        // add enemies
+        if (frameCount % 90 === 0) {
+			// add an enemy to the enemyEasy array
+			this.enemiesEasy.push(new Enemy(this.enemyImage))
+		}
+		this.enemiesEasy.forEach(function (enemy) {
+			enemy.draw()
+		})
+
+        // clear dead enemies or enemies out of sight
+        this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+			if ( /* to add here the hit function */enemy.enemyPositionX < (0- enemy.enemyWidth)) {
+				return false
+			} else {
+				return true
+			}
+		})
+
+		console.log(this.enemiesEasy.length)
     }
 
-    shoot(){
-        console.log(`x: ${mouseX} / y: ${mouseY}`)
-    }
+    // shoot(){
+    //     console.log(`x: ${mouseX} / y: ${mouseY}`)
+    // }
 
     hit(){
-        let hitBoxRadius = this.enemy.enemyWidth / 2
-        let distanceToEnemy = dist(this.enemy.enemyCenterPosX, this.enemy.enemyCenterPosY, mouseX, mouseY);
+        console.log(this.enemiesEasy);
+        
+        // this.enemiesEasy.forEach(function(enemy){
+        //     let distanceToEnemy = dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY);
+    
+        //     if (distanceToEnemy < enemy.hitBoxRadius){
+        //         enemy.enemyHit = true 
+        //         console.log('Treffer ;)');
 
-        if (distanceToEnemy < hitBoxRadius){
-            console.log('Treffer');
-            // hier muss noch hin, dass die Enemeys wie bei den Coins einem Array beim Start hinzugefügt werden
-            // und wenn abgechossen aus dem Array entfernt werden
+        //         game.enemiesEasy = game.enemiesEasy.filter(enemy => {
+        //             if (enemy.enemyHit === true) {
+        //                 return false
+        //             } else {
+        //                 return true
+        //             }
+        //         })
+        //     } else {
+        //         console.log('Daneben!');
+        //     }
+        // })  
 
-        } else {
-            console.log('Daneben!');
-        }
+        // kürzere Version:
+        this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+            if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
+                console.log('Treffer ;)')
+                return false
+            } else {
+                console.log('Daneben!')
+                return true
+            }
+        }) 
     }
-
-
 
     preload() {
         this.background = loadImage('/assets/background_retro-futurism.jpg')

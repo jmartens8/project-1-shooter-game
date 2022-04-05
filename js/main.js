@@ -17,6 +17,6 @@ function draw() {
 }
 
 function mouseClicked() {
-    game.shoot()
+    // game.shoot()
     game.hit()
 }
