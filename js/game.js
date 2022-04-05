@@ -3,6 +3,10 @@ class Game {
     constructor() {
         this.background
         this.enemiesEasy = []
+        this.leftBorder = 0
+        this.rightBorder = width
+        this.topBorder = 0
+        this.buttomBorder = heigth
     }
 
     setup() {
@@ -20,7 +24,7 @@ class Game {
         })
 
         // add enemies
-        if (frameCount % 90 === 0) {
+        if (frameCount % 40 === 0) {
 			// add an enemy to the enemyEasy array
 			this.enemiesEasy.push(new Enemy(this.enemyImage))
 		}
@@ -30,9 +34,10 @@ class Game {
 
         // clear dead enemies or enemies out of sight
         this.enemiesEasy = this.enemiesEasy.filter(enemy => {
-			if ( /* to add here the hit function */enemy.enemyPositionX < (0- enemy.enemyWidth)) {
+			if (enemy.enemyPositionX < (0 - enemy.enemyWidth)) {
 				return false
-			} else {
+			} 
+            else {
 				return true
 			}
 		})
