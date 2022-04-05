@@ -2,7 +2,8 @@
 class Game {
     constructor() {
         this.background
-        this.enemiesEasy = []
+        this.enemiesArr = []
+        this.bulletsArr = []
         this.timer = 0 // Standard frame rate is 40 fps
         this.ammo = 12
     }
@@ -14,10 +15,6 @@ class Game {
     draw() {
         clear()
 
-        // start and update timer
-        // console.log(frameRate);
-
-
         // draw background
         image(this.background, 0, 0, gameWidth, gameHeigth)
 
@@ -25,38 +22,35 @@ class Game {
         cursor('/assets/crosshair177.png', 64, 64)
 
         // Hilfslinien:
-        this.enemiesEasy.forEach(function(enemy){
+        this.enemiesArr.forEach(function(enemy){
             line(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY)
         })
 
         // add easy enemies
         if (frameCount % 80 === 0) {
-			// add an enemy to the enemyEasy array
-			this.enemiesEasy.push(new Enemy(200, 200, this.enemyImageEasy, 2))
-            console.log('enemy added');
+			// add an enemy to the enemiesArr 
+			this.enemiesArr.push(new Enemy(200, 200, this.enemyImageEasy, 2, 'easy'))
 		}
 
         // add medium enemies
         if (frameCount % 140 === 0) {
-			// add an enemy to the enemyEasy array
-			this.enemiesEasy.push(new Enemy(120, 120, this.enemyImageMedium, 4))
-            console.log('enemy added');
+			// add an enemy to the enemiesArr 
+			this.enemiesArr.push(new Enemy(120, 120, this.enemyImageMedium, 4, 'medium'))
 		}
 
         // add hard enemies
         if (frameCount % 160 === 0) {
-			// add an enemy to the enemyEasy array
-			this.enemiesEasy.push(new Enemy(100, 100, this.enemyImageHard, 8))
-            console.log('enemy added');
+			// add an enemy to the enemiesArr 
+			this.enemiesArr.push(new Enemy(100, 100, this.enemyImageHard, 8, 'hard'))
 		}
 
         // draw enemies from array
-		this.enemiesEasy.forEach(function(enemy) {
+		this.enemiesArr.forEach(function(enemy) {
 			enemy.draw()
 		})
 
         // clear enemies out of sight from array
-        this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+        this.enemiesArr = this.enemiesArr.filter(enemy => {
             // check flight LtR - right border 
 			if (enemy.enemyFlightDirection === 0 && enemy.enemyPositionX > (gameWidth)) {
 				return false
@@ -84,11 +78,15 @@ class Game {
             else return true
 		})
 
-		// console.log(this.enemiesEasy.length)
+        // draw bullets from array
+		this.bulletsArr.forEach(function(bullet) {
+			bullet.draw()
+		})
+
+		
     }
 
     shoot(){
-        console.log(`x: ${mouseX} / y: ${mouseY}`)
         // every shot costs one ammo
         this.ammo --
 
@@ -98,6 +96,13 @@ class Game {
         }
         else {this.soundGunEmpty.play()
         }
+
+        // add bullets to the array
+        this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bullet))
+        console.log(this.bulletsArr)
+        // console.log(`bulletsArr length: ${this.bulletsArr.length}`);
+
+        
     }
 
     reload(){
@@ -105,12 +110,10 @@ class Game {
         this.soundReload.play()
     }
 
-    hit(){
-        console.log(this.enemiesEasy);
-        
+    hit(){ 
         // clear dead enemies from array
         if (this.ammo > 0){
-            this.enemiesEasy = this.enemiesEasy.filter(enemy => {
+            this.enemiesArr = this.enemiesArr.filter(enemy => {
                 if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
                     console.log('Treffer ;)')
                     return false
@@ -130,5 +133,6 @@ class Game {
         this.soundGunFire = loadSound('/assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
+        this.bullet = loadImage('/assets/LaserBeam.png')
     }
 }
