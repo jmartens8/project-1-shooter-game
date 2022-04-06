@@ -22,8 +22,7 @@ class Game {
         // draw cursor image
         cursor('/assets/crosshair177.png', 64, 64)
 
-        // draw alienShip
-        this.alienShip.draw(mouseX, mouseY)
+      
 
         // Hilfslinien:
         this.enemiesArr.forEach(function(enemy){
@@ -97,7 +96,9 @@ class Game {
             }
             else return true
         })
-    
+        
+        // draw alienShip
+        this.alienShip.draw(mouseX, mouseY)
 		
     }
 
@@ -119,15 +120,15 @@ class Game {
     hit(){ 
         // clear dead enemies from array
 
-        this.enemiesArr = this.enemiesArr.filter(enemy => {
-            if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
-                console.log('Treffer ;)')
-                return false
-            } else {
-                console.log('Daneben!')
-                return true
-            }
-        }) 
+        // this.enemiesArr = this.enemiesArr.filter(enemy => {
+        //     if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
+        //         console.log('Treffer ;)')
+        //         return false
+        //     } else {
+        //         console.log('Daneben!')
+        //         return true
+        //     }
+        // }) 
 
         // clear dead enemies from array (death by bullet) 
 
@@ -135,18 +136,38 @@ class Game {
             this.bulletsArr.forEach(bullet => {
                 console.log('test');
                 if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
-                    return true
+                    return false
                 }
                 else {
-                    return false
+                    return true
                 }
             })
             
         })
-            
-
-        // clear bullets out of array that hit enemy
-
+        
+      
+        // this.enemiesArr.forEach( (enemy, indexEnemy) => {                
+        //     this.bulletsArr.forEach( bullet => {
+        //         // console.log('bullet + enemy',bullet, enemy);
+        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
+        //             this.enemiesArr.splice(indexEnemy,1)
+        //         } else {
+        //             console.log('missed');
+        //         }
+        //     })
+        // })
+        
+        // // clear bullets out of array that hit enemy
+        // this.bulletsArr.forEach( (bullet, indexBullet) => {                
+        //     this.enemiesArr.forEach( enemy => {
+        //         // console.log('bullet + enemy',bullet, enemy);
+        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
+        //             this.bulletsArr.splice(indexBullet,1)
+        //         } else {
+        //             console.log('missed');
+        //         }
+        //     })
+        // })
     }
 
     preload() {
@@ -157,7 +178,7 @@ class Game {
         this.soundGunFire = loadSound('/assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
-        this.bulletImage = loadImage('/assets/LaserBeam.png')
+        this.bulletImage = loadImage('/assets/LaserBall.png')
         this.alienShipImage = loadImage('/assets/AlienGun.png')
     }
 }

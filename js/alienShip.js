@@ -15,7 +15,7 @@ class AlienShip {
     }
 
     draw() {
-        console.log('Alien ship has arrived');
+        // console.log('Alien ship has arrived');
         
 
 

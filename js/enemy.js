@@ -29,16 +29,23 @@ class Enemy {
         this.enemyCenterPosX = this.enemyPositionX + this.enemyWidth/2
         this.enemyCenterPosY = this.enemyPositionY + this.enemyHeigth/2
 
+
         // flying from left to right
         if (this.enemyFlightDirection === 0) { 
             this.enemyPositionX += 1 * this.enemySpeed
+            this.enemyCenterPosX += 1 * this.enemySpeed // NEU NEU NEU
+            // console.log(`enemy position x: ${this.enemyPositionX} // enemy centerPosX ${this.enemyCenterPosX}`);
+            // console.log(`radius of enemy hitbox ${this.hitBoxRadius}`);
         }
 
         // flying from right to left
         if (this.enemyFlightDirection === 1) { 
             this.enemyPositionX -= 1 * this.enemySpeed
+            this.enemyCenterPosY -= 1 * this.enemySpeed // NEU NEU NEU
         }
 
         image(this.enemyImage, this.enemyPositionX, this.enemyPositionY, this.enemyWidth, this.enemyHeigth)
+
+        
     }
 }

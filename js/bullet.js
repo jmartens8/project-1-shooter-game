@@ -1,9 +1,9 @@
 class Bullet {
     constructor(x, y, image){
-        this.bulletWidth = 30
-        this.bulletHeigth = 100
+        this.bulletWidth = 50
+        this.bulletHeigth = 50
         
-        this.speed = 40
+        this.speed = 10
         this.r = 5
         this.startX = gameWidth / 2
         this.startY = gameHeigth
@@ -30,8 +30,9 @@ class Bullet {
         this.hitBoxCenterX += this.dir.x * this.speed;
         this.hitBoxCenterY += this.dir.y * this.speed;
 
-        translate(this.startX, this.startY);
-        rotate(this.dir.heading() - radians(90));
-        image(this.image, 0, 0, this.bulletWidth, this.bulletHeigth)        
+        // translate(this.startX, this.startY);
+        // rotate(this.dir.heading() - radians(90));
+        // image(this.image, 0, 0, this.bulletWidth, this.bulletHeigth)        
+        image(this.image, this.startX, this.startY, this.bulletWidth, this.bulletHeigth)   
     }
 }

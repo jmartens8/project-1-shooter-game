@@ -4,5 +4,32 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "Spartan", sans-serif;
-    background-color: #c8dad3;
+    color: azure;
   }
+
+html {
+  /* background-repeat: no-repeat; */
+  background-position: cover;
+  background-size: cover;
+  background-image: url('https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  width: 1600px;
+}
+
+.ammo{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+.bullet > img{
+  width: 40px;
+  height: 40px;
+
+}
