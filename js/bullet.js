@@ -1,6 +1,6 @@
 class Bullet {
     constructor(x, y, image){
-        this.speed = 2
+        this.speed = 40
         this.r = 5
         this.startX = gameWidth / 2
         this.startY = gameHeigth
@@ -8,19 +8,22 @@ class Bullet {
         this.targetY = y
         this.dir = createVector(x-this.startX, y-this.startY).normalize()
         this.image = image
-
     }
 
     draw(){
-        console.log('bullet drawn');
-        console.log(this.startX);
-        console.log(this.startY);
+        // console.log('bullet drawn');
+        // console.log(this.startX);
+        // console.log(this.startY);
 
+        
         this.startX += this.dir.x * this.speed;
         this.startY += this.dir.y * this.speed;
-
+        
         image(this.image, this.startX, this.startY, 30, 100)
-
+        
+        // let angle = Math.atan2(this.targetY-this.startY, this.targetX-this.startX);
+        // console.log(angle);
+        // rotate(angle)
     }
 }
 

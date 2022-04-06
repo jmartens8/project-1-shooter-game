@@ -83,6 +83,17 @@ class Game {
 			bullet.draw()
 		})
 
+        // clear bullets out of sight from array
+        this.bulletsArr = this.bulletsArr.filter(bullet =>{
+            if (bullet.startX > gameWidth || bullet.startX < 0){
+                return false
+            }
+            else if (bullet.startY<0){
+                return false
+            }
+            else return true
+        })
+    
 		
     }
 
@@ -100,7 +111,7 @@ class Game {
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bullet))
         console.log(this.bulletsArr)
-        // console.log(`bulletsArr length: ${this.bulletsArr.length}`);
+        console.log(`bulletsArr length: ${this.bulletsArr.length}`);
 
         
     }

@@ -17,8 +17,10 @@ function draw() {
 }
 
 function mouseClicked() {
-    game.hit()
-	game.shoot()
+	if ((mouseX <= gameWidth && mouseY <= gameHeigth) && (mouseX > 0 && mouseY > 0)){
+		game.hit()
+		game.shoot()
+	}
 }
 
 function keyPressed(){
