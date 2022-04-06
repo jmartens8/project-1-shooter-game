@@ -102,7 +102,7 @@ class Game {
         this.soundGunFire.play()
         
         // add bullets to the array
-        this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bullet))
+        this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bulletImage))
         // console.log(this.bulletsArr)
         // console.log(`bulletsArr length: ${this.bulletsArr.length}`);
     }
@@ -114,17 +114,36 @@ class Game {
 
     hit(){ 
         // clear dead enemies from array
+        // if (this.ammo > 0){
+        //     this.enemiesArr = this.enemiesArr.filter(enemy => {
+        //         if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
+        //             console.log('Treffer ;)')
+        //             return false
+        //         } else {
+        //             console.log('Daneben!')
+        //             return true
+        //         }
+        //     }) 
+        // }
+
+        // clear dead enemies from array (death by bullet) 
         if (this.ammo > 0){
             this.enemiesArr = this.enemiesArr.filter(enemy => {
-                if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
-                    console.log('Treffer ;)')
-                    return false
-                } else {
-                    console.log('Daneben!')
-                    return true
-                }
-            }) 
+                this.bulletsArr.forEach(bullet => {
+                    console.log('test');
+                    if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+                
+            })
+             
         }
+        // clear bullets out of array that hit enemy
+
     }
 
     preload() {
@@ -135,6 +154,6 @@ class Game {
         this.soundGunFire = loadSound('/assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
-        this.bullet = loadImage('/assets/LaserBeam.png')
+        this.bulletImage = loadImage('/assets/LaserBeam.png')
     }
 }
