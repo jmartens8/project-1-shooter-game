@@ -8,6 +8,7 @@ class Bullet {
         this.targetY = y
         this.dir = createVector(x-this.startX, y-this.startY).normalize()
         this.image = image
+        this.angle = Math.atan2(this.startY, this.startX) * 180 / Math.PI;
     }
 
     draw(){
@@ -19,11 +20,15 @@ class Bullet {
         this.startX += this.dir.x * this.speed;
         this.startY += this.dir.y * this.speed;
         
-        image(this.image, this.startX, this.startY, 30, 100)
         
         // let angle = Math.atan2(this.targetY-this.startY, this.targetX-this.startX);
+        
+        //  translate(this.startX, this.startY)
         // console.log(angle);
-        // rotate(angle)
+      
+        
+        image(this.image, this.startX, this.startY, 30, 100)
+        rotate(this.angle)
     }
 }
 

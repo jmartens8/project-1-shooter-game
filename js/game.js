@@ -98,22 +98,13 @@ class Game {
     }
 
     shoot(){
-        // every shot costs one ammo
         this.ammo --
-
-        //play gunfire sound if ammo is not 0, otherwise play empty gun sound
-        if (this.ammo > 0){ 
         this.soundGunFire.play()
-        }
-        else {this.soundGunEmpty.play()
-        }
-
+        
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bullet))
-        console.log(this.bulletsArr)
-        console.log(`bulletsArr length: ${this.bulletsArr.length}`);
-
-        
+        // console.log(this.bulletsArr)
+        // console.log(`bulletsArr length: ${this.bulletsArr.length}`);
     }
 
     reload(){
