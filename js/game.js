@@ -4,6 +4,7 @@ class Game {
         this.background
         this.enemiesArr = []
         this.bulletsArr = []
+        this.alienShip = new AlienShip ()
         this.timer = 0 // Standard frame rate is 40 fps
         this.ammo = 12
     }
@@ -20,6 +21,9 @@ class Game {
 
         // draw cursor image
         cursor('/assets/crosshair177.png', 64, 64)
+
+        // draw alienShip
+        this.alienShip.draw(mouseX, mouseY)
 
         // Hilfslinien:
         this.enemiesArr.forEach(function(enemy){
@@ -114,34 +118,33 @@ class Game {
 
     hit(){ 
         // clear dead enemies from array
-        // if (this.ammo > 0){
-        //     this.enemiesArr = this.enemiesArr.filter(enemy => {
-        //         if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
-        //             console.log('Treffer ;)')
-        //             return false
-        //         } else {
-        //             console.log('Daneben!')
-        //             return true
-        //         }
-        //     }) 
-        // }
+
+        this.enemiesArr = this.enemiesArr.filter(enemy => {
+            if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
+                console.log('Treffer ;)')
+                return false
+            } else {
+                console.log('Daneben!')
+                return true
+            }
+        }) 
 
         // clear dead enemies from array (death by bullet) 
-        if (this.ammo > 0){
-            this.enemiesArr = this.enemiesArr.filter(enemy => {
-                this.bulletsArr.forEach(bullet => {
-                    console.log('test');
-                    if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
-                        return true
-                    }
-                    else {
-                        return false
-                    }
-                })
-                
+
+        this.enemiesArr = this.enemiesArr.filter(enemy => {
+            this.bulletsArr.forEach(bullet => {
+                console.log('test');
+                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
+                    return true
+                }
+                else {
+                    return false
+                }
             })
-             
-        }
+            
+        })
+            
+
         // clear bullets out of array that hit enemy
 
     }
@@ -155,5 +158,6 @@ class Game {
         this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
         this.bulletImage = loadImage('/assets/LaserBeam.png')
+        this.alienShipImage = loadImage('/assets/AlienGun.png')
     }
 }
