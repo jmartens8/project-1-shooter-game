@@ -1,13 +1,10 @@
 class AlienShip {
-    constructor(mousePosX, mousePosY) {
+    constructor() {
         this.width = 250
         this.heigth = 250
 
         this.x = (gameWidth / 2) - (this.width / 2)
         this.y = (gameHeigth) - (this.heigth - (this.heigth/8))
-
-        this.mousePosX = mousePosX
-        this.mousePosY = mousePosY
 
         //this.dir = createVector(this.mousePosX-this.x, this.mousePosY-this.y).normalize()
         this.direction = 0
@@ -15,20 +12,15 @@ class AlienShip {
     }
 
     draw() {
-        // console.log('Alien ship has arrived');
-        
+        push()
+
+        translate(795, 900);
+        let angle = Math.atan2(mouseY - 900, mouseX - 795)
+        rotate(angle + radians(90));
 
 
-
-        // translate(this.x, this.y)
-        // rotate(Math.atan2(mouseY-this.y, mouseX-this.x))    
-        
-        
-        // // let angle = Math.atan2(mouseY-this.y, mouseX-this.x) * 180 / Math.PI
-        
-        // // translate(this.x, this.y);
-        // // // rotate(angle)
-        // // rotate(angle + radians(-90))
-        image(game.alienShipImage, this.x, this.y, this.width, this.heigth)   
+        imageMode(CENTER)
+        image(game.alienShipImage, 0, 0, this.width, this.heigth)
+        pop()
     }
 }

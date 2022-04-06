@@ -98,8 +98,7 @@ class Game {
         })
         
         // draw alienShip
-        this.alienShip.draw(mouseX, mouseY)
-		
+        this.alienShip.draw()
     }
 
     shoot(){
@@ -130,32 +129,55 @@ class Game {
         //     }
         // }) 
 
-        // clear dead enemies from array (death by bullet) 
+        // clear dead enemies from array (death by bullet)
 
-        this.enemiesArr = this.enemiesArr.filter(enemy => {
-            this.bulletsArr.forEach(bullet => {
-                console.log('test');
-                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
-                    return false
-                }
-                else {
-                    return true
-                }
-            })
-            
-        })
         
-      
-        // this.enemiesArr.forEach( (enemy, indexEnemy) => {                
-        //     this.bulletsArr.forEach( bullet => {
-        //         // console.log('bullet + enemy',bullet, enemy);
-        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
-        //             this.enemiesArr.splice(indexEnemy,1)
-        //         } else {
-        //             console.log('missed');
+        // this.enemiesArr = this.enemiesArr.filter(enemy => {
+        //     this.bulletsArr.forEach(bullet => {
+        //         console.log('test');
+        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
+        //             return false
+        //         }
+        //         else {
+        //             return true
         //         }
         //     })
+            
         // })
+        
+      
+        this.enemiesArr.forEach(enemy => {                
+            this.bulletsArr.forEach(bullet => {
+                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, 100, bullet.hitBoxCenterX, bullet.hitBoxCenterY, 50)) {
+                    enemy.dead = true
+                    bullet.dead = true
+                    console.log('hit');
+                    console.log(enemy.dead);
+                    console.log(bullet.dead);
+                } else {
+                    console.log('missed');
+                }
+            })
+        })
+
+        this.enemiesArr = this.enemiesArr.filter(enemy => {
+            if (enemy.dead){
+                return false
+            }
+            else {
+                return true
+            }
+        })
+
+        this.bulletsArr = this.bulletsArr.filter(bullet => {
+            if (bullet.dead){
+                return false
+            }
+            else {
+                return true
+            }
+        })
+
         
         // // clear bullets out of array that hit enemy
         // this.bulletsArr.forEach( (bullet, indexBullet) => {                

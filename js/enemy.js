@@ -2,9 +2,11 @@ class Enemy {
     constructor(width, heigth, image, speed, type){
         this.enemyWidth = width
         this.enemyHeigth = heigth
+        this.dead = false
 
         this.enemyImage = image
         this.enemyFlightDirection = Math.round(Math.random())
+
 
         // x postion
         if (this.enemyFlightDirection === 0) {
@@ -45,7 +47,5 @@ class Enemy {
         }
 
         image(this.enemyImage, this.enemyPositionX, this.enemyPositionY, this.enemyWidth, this.enemyHeigth)
-
-        
     }
 }

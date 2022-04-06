@@ -2,6 +2,7 @@ class Bullet {
     constructor(x, y, image){
         this.bulletWidth = 50
         this.bulletHeigth = 50
+        this.dead = false
         
         this.speed = 10
         this.r = 5
