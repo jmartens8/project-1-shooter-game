@@ -4,10 +4,10 @@ class Bullet {
         this.bulletHeigth = 50
         this.dead = false
         
-        this.speed = 10
+        this.speed = 25
         this.r = 5
-        this.startX = gameWidth / 2
-        this.startY = gameHeigth
+        this.startX = (gameWidth / 2) - 30
+        this.startY = gameHeigth - 120 // -110 sind die Anpassungen, dass die Kugeln gut aus der Kanone kommen
         this.targetX = x
         this.targetY = y
         this.dir = createVector(x-this.startX, y-this.startY).normalize()

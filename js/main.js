@@ -17,9 +17,9 @@ function draw() {
 }
 
 function mouseClicked() {
-	if ((mouseX <= gameWidth && mouseY <= gameHeigth) && (mouseX > 0 && mouseY > 0) && game.ammo > 0){
-		game.hit()
+	if ((mouseX <= gameWidth && mouseY <= gameHeigth) && (mouseX > 0 && mouseY > 0) /*&& game.ammo > 0*/){
 		game.shoot()
+		game.hit()
 	}
 	// play gun empty sound, when ammo lvl is 0
 	else game.soundGunEmpty.play()

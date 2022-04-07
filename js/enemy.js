@@ -24,7 +24,7 @@ class Enemy {
         this.enemyCenterPosX = this.enemyPositionX + this.enemyWidth/2
         this.enemyCenterPosY = this.enemyPositionY + this.enemyHeigth/2
 
-        this.hitBoxRadius = this.enemyWidth / 2
+        this.hitBoxRadius = this.enemyWidth
     }
 
     draw(){

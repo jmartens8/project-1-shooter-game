@@ -17,19 +17,38 @@ html {
 .top-bar {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   background-color: black;
   width: 1600px;
+}
+
+.points{
+  background-color: green;
 }
 
 .ammo{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   background-color: red;
+  border: solid black;
 }
-.bullet > img{
+
+.bullet > img {
   width: 40px;
   height: 40px;
+}
 
+.life {
+  width: 40px;
+  height: 40px;
+  border: solid black;
+  background-color: red;
+}
+
+.heart > img{
+  width: 40px;
+  height: 40px;
+  border: solid black;
+  background-color: blue;
 }

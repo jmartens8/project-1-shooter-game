@@ -5,7 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Spartan&display=swap" rel="stylesheet"/>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Spartan&display=swap" rel="stylesheet"/> -->
+    <style>@font-face 
+        {
+        font-family: ethnocentric;
+        src: url('/assets/ethnocentric/ethnocentric\ rg\ it.otf');
+        }
+        h1 {
+         font-family: ethnocentric, Fallback, sans-serif
+      }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.js"></script>
     <script src="https://unpkg.com/p5.collide2d"></script> 
@@ -16,47 +26,51 @@
 </head>
 
 <body>
-    <h1>Shooter Game</h1>
+    <h1>Shooter Games</h1>
     <section class="top-bar">
+        <div class="life">
+            <div class="heart">
+                <img src="/assets/tile_0044.png" alt="HeartFull">
+            </div>
+        </div>
         <div class="points">
             <h2>Points: </h2>
         </div>
         <div class="ammo">
-            <h2>Ammunition: </h2>
-            <div class="bullet">
+            <div class="bullet" id="bullet1">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet2">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet3">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet4">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet5">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet6">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet7">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet8">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet9">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet10">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet11">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
-            <div class="bullet">
+            <div class="bullet" id="bullet12">
                 <img src="/assets/LaserBall.png" alt="LaserBall">
             </div>
         </div>
@@ -66,7 +80,6 @@
     <script src="/js/alienShip.js"></script>
     <script src="/js/bullet.js"></script>
     <script src="/js/enemy.js"></script>
-    <script src="/js/background.js"></script>
     <script src="/js/game.js"></script>
     <script src="/js/main.js"></script>
 </body>

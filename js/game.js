@@ -30,22 +30,22 @@ class Game {
         })
 
         // add easy enemies
-        if (frameCount % 80 === 0) {
+        if (frameCount % 160 === 0) {
 			// add an enemy to the enemiesArr 
 			this.enemiesArr.push(new Enemy(200, 200, this.enemyImageEasy, 2, 'easy'))
 		}
 
-        // add medium enemies
-        if (frameCount % 140 === 0) {
-			// add an enemy to the enemiesArr 
-			this.enemiesArr.push(new Enemy(120, 120, this.enemyImageMedium, 4, 'medium'))
-		}
+        // // add medium enemies
+        // if (frameCount % 140 === 0) {
+		// 	// add an enemy to the enemiesArr 
+		// 	this.enemiesArr.push(new Enemy(120, 120, this.enemyImageMedium, 4, 'medium'))
+		// }
 
-        // add hard enemies
-        if (frameCount % 160 === 0) {
-			// add an enemy to the enemiesArr 
-			this.enemiesArr.push(new Enemy(100, 100, this.enemyImageHard, 8, 'hard'))
-		}
+        // // add hard enemies
+        // if (frameCount % 160 === 0) {
+		// 	// add an enemy to the enemiesArr 
+		// 	this.enemiesArr.push(new Enemy(100, 100, this.enemyImageHard, 8, 'hard'))
+		// }
 
         // draw enemies from array
 		this.enemiesArr.forEach(function(enemy) {
@@ -104,6 +104,7 @@ class Game {
     shoot(){
         this.ammo --
         this.soundGunFire.play()
+        document.querySelectorAll('.ammo')
         
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bulletImage))
@@ -117,45 +118,21 @@ class Game {
     }
 
     hit(){ 
-        // clear dead enemies from array
-
-        // this.enemiesArr = this.enemiesArr.filter(enemy => {
-        //     if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, mouseX, mouseY) < enemy.hitBoxRadius) {
-        //         console.log('Treffer ;)')
-        //         return false
-        //     } else {
-        //         console.log('Daneben!')
-        //         return true
-        //     }
-        // }) 
-
-        // clear dead enemies from array (death by bullet)
-
-        
-        // this.enemiesArr = this.enemiesArr.filter(enemy => {
-        //     this.bulletsArr.forEach(bullet => {
-        //         console.log('test');
-        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)){
-        //             return false
-        //         }
-        //         else {
-        //             return true
-        //         }
-        //     })
-            
-        // })
-        
-      
-        this.enemiesArr.forEach(enemy => {                
+        console.log('shoot')
+        // clear dead enemies from array        
+        this.enemiesArr.forEach(enemy => { 
+            console.log(this.bulletsArr)               
             this.bulletsArr.forEach(bullet => {
-                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, 100, bullet.hitBoxCenterX, bullet.hitBoxCenterY, 50)) {
+                console.log('bullets for each')
+                console.log(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)                
+                if (dist(enemy.enemyCenterPosX, enemy.enemyCenterPosY, bullet.hitBoxCenterX, bullet.hitBoxCenterY) < 100){
+                // if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
                     enemy.dead = true
                     bullet.dead = true
-                    console.log('hit');
-                    console.log(enemy.dead);
-                    console.log(bullet.dead);
+                    // console.log('hit');
+                   
                 } else {
-                    console.log('missed');
+                    // console.log('missed');
                 }
             })
         })
@@ -177,22 +154,12 @@ class Game {
                 return true
             }
         })
-
-        
-        // // clear bullets out of array that hit enemy
-        // this.bulletsArr.forEach( (bullet, indexBullet) => {                
-        //     this.enemiesArr.forEach( enemy => {
-        //         // console.log('bullet + enemy',bullet, enemy);
-        //         if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
-        //             this.bulletsArr.splice(indexBullet,1)
-        //         } else {
-        //             console.log('missed');
-        //         }
-        //     })
-        // })
     }
 
     preload() {
+        // this.backgroundMusicStart = loadSound('')
+        // this.backgroundMusicFight = loadSound('')
+        // this.backgroundMusicEnd = loadSound('')
         this.background = loadImage('/assets/background_retro-futurism.jpg')
         this.enemyImageEasy = loadImage('/assets/Lizard_1.png')
         this.enemyImageMedium = loadImage('/assets/Sheep_1.png')
@@ -202,5 +169,6 @@ class Game {
         this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
         this.bulletImage = loadImage('/assets/LaserBall.png')
         this.alienShipImage = loadImage('/assets/AlienGun.png')
+        
     }
 }
