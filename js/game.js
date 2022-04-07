@@ -12,7 +12,7 @@ class Game {
     }
 
     setup() {
-        play background music in an infinite loop
+        // play background music in an infinite loop
         this.backgroundMusicFight.play()
         this.backgroundMusicFight.loop()
     }
