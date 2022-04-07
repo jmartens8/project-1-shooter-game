@@ -24,7 +24,7 @@ class Game {
         image(this.background, 0, 0, gameWidth, gameHeigth)
 
         // draw cursor image
-        cursor('/assets/crosshair177.png', 64, 64)
+        cursor('assets/crosshair177.png', 64, 64)
 
         // add easy enemies
         if (frameCount % 80 === 0) {
@@ -121,40 +121,40 @@ class Game {
 
         //refill the html div ammo with new bullets
         document.querySelector('.ammo').innerHTML = `<div class="bullet" id="bullet1">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet2">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet3">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet4">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet5">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet6">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet7">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet8">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet9">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet10">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet11">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>
     <div class="bullet" id="bullet12">
-        <img src="/assets/LaserBall.png" alt="LaserBall">
+        <img src="assets/LaserBall.png" alt="LaserBall">
     </div>`
     }
 
@@ -210,7 +210,7 @@ class Game {
         
         // add empty heart to the html div
         let emptyLife = document.createElement('div')
-        emptyLife.innerHTML = `<img src="/assets/tile_0046.png" alt="HeartEmtpy">`
+        emptyLife.innerHTML = `<img src="assets/tile_0046.png" alt="HeartEmtpy">`
         emptyLife.classList.add('heart')
         document.querySelector('.life').appendChild(emptyLife)
     }
@@ -223,20 +223,20 @@ class Game {
 
     preload() {
         // this.backgroundMusicStart = loadSound('')
-        this.backgroundMusicFight = loadSound('/assets/sounds/background/DubStepDropBoom.mp3')
+        this.backgroundMusicFight = loadSound('assets/sounds/background/DubStepDropBoom.mp3')
         // this.backgroundMusicEnd = loadSound('')
-        this.background = loadImage('/assets/background_retro-futurism.jpg')
+        this.background = loadImage('assets/background_retro-futurism.jpg')
 
-        this.enemyImageEasy = loadImage('/assets/Lizard_1.png')
-        this.enemyImageMedium = loadImage('/assets/Sheep_1.png')
-        this.enemyImageHard = loadImage('/assets/Spider_1.png')
-        this.bulletImage = loadImage('/assets/LaserBall.png')
-        this.alienShipImage = loadImage('/assets/AlienGun.png')
+        this.enemyImageEasy = loadImage('assets/Lizard_1.png')
+        this.enemyImageMedium = loadImage('assets/Sheep_1.png')
+        this.enemyImageHard = loadImage('assets/Spider_1.png')
+        this.bulletImage = loadImage('assets/LaserBall.png')
+        this.alienShipImage = loadImage('assets/AlienGun.png')
 
-        this.soundGunFire = loadSound('/assets/sounds/laser-gun-19sf.mp3')
-        this.soundGunEmpty = loadSound('/assets/sounds/LaserEmpty.mp3')
-        this.soundReload = loadSound('/assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
-        this.soundLooseLife = loadSound('/assets/sounds/hurt.wav')
-        this.soundEnemyHit = loadSound('/assets/sounds/Enemy hit.mp3')
+        this.soundGunFire = loadSound('assets/sounds/laser-gun-19sf.mp3')
+        this.soundGunEmpty = loadSound('assets/sounds/LaserEmpty.mp3')
+        this.soundReload = loadSound('assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
+        this.soundLooseLife = loadSound('assets/sounds/hurt.wav')
+        this.soundEnemyHit = loadSound('assets/sounds/Enemy hit.mp3')
     }
 }
