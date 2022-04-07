@@ -20,7 +20,7 @@ class Game {
     }
 
     setup() {
-        // game.backgroundMusicFight.loop()
+        game.backgroundMusicFight.loop()
     }
 
     draw() {
@@ -259,8 +259,8 @@ class Game {
     }
 
     gameOver (){
-        // this.backgroundMusicFight.stop()
-        // this.backgroundMusicEnd.loop()
+        this.backgroundMusicFight.stop()
+        this.backgroundMusicEnd.loop()
         
         let gameOver = document.createElement('section')
         gameOver.innerHTML =`<div id="dead">You died!</div><div id="score">Score: ${this.gamePoints}</div><div><img src="https://media.giphy.com/media/l378BzHA5FwWFXVSg/giphy.gif" alt="rick and morty"></div>`
@@ -270,7 +270,7 @@ class Game {
 
     preload() {
         // this.backgroundMusicStart = loadSound('')
-        this.background = loadImage('assets/background_retro-futurism.jpg')
+        this.background = loadImage('assets/cool-geometric-triangular-figure-neon-laser-light-great-background.jpg')
         
         this.enemyImageEasy = loadImage('assets/Lizard_1.png')
         this.enemyImageMedium = loadImage('assets/Sheep_1.png')
