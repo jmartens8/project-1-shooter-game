@@ -12,9 +12,9 @@ class Game {
     }
 
     setup() {
-        //play background music in an infinite loop
-        // this.backgroundMusicFight.play()
-        // this.backgroundMusicFight.loop()
+        play background music in an infinite loop
+        this.backgroundMusicFight.play()
+        this.backgroundMusicFight.loop()
     }
 
     draw() {
@@ -213,6 +213,12 @@ class Game {
         emptyLife.innerHTML = `<img src="/assets/tile_0046.png" alt="HeartEmtpy">`
         emptyLife.classList.add('heart')
         document.querySelector('.life').appendChild(emptyLife)
+    }
+
+    gameOver (){
+        if (this.life === 0){
+
+        }
     }
 
     preload() {
