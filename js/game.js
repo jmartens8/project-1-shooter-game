@@ -12,13 +12,21 @@ class Game {
     }
 
     setup() {
-        // play background music in an infinite loop
-        this.backgroundMusicFight.play()
-        this.backgroundMusicFight.loop()
+        game.backgroundMusicFight.loop()
     }
+
+    // playMusic(){
+    //     if (game.life >= 0){
+    //         // play background music in an infinite loop
+    //         game.backgroundMusicFight.play()
+    //         game.backgroundMusicFight.loop()
+    //     }
+    // }
 
     draw() {
         clear()
+
+        
 
         // draw background
         image(this.background, 0, 0, gameWidth, gameHeigth)
@@ -113,6 +121,7 @@ class Game {
         
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bulletImage))
+        console.log(frameCount);
     }
 
     reload(){
@@ -171,9 +180,8 @@ class Game {
                     // add the points for each enemy to the score in the html
                     this.gamePoints += enemy.enemyPoints
                     document.getElementById('current-score').innerHTML = this.gamePoints
-
+                    // document.getElementById('score').innerHTML = this.gamePoints
                 }
-        
             })
         })
 
@@ -196,12 +204,8 @@ class Game {
         })
     }
 
-    // collectPoints(){
-    //     console.log('you got points');
-        
-    // }
-
     looseLife(){
+        console.log('looseLife wird ausgeführt');
         this.life --
         this.soundLooseLife.play()
 
@@ -213,30 +217,41 @@ class Game {
         emptyLife.innerHTML = `<img src="assets/tile_0046.png" alt="HeartEmtpy">`
         emptyLife.classList.add('heart')
         document.querySelector('.life').appendChild(emptyLife)
+
+        if (this.life < 0){
+            console.log('gameover');
+            game.gameOver()
+        }
     }
 
     gameOver (){
-        if (this.life === 0){
+        this.backgroundMusicFight.stop()
 
-        }
+        this.backgroundMusicEnd.loop()
+
+        
+        let gameOver = document.createElement('section')
+        gameOver.innerHTML =`<div id="dead">You died!</div><div id="score">Score: ${this.gamePoints}</div><div><img src="https://media.giphy.com/media/l378BzHA5FwWFXVSg/giphy.gif" alt="rick and morty"></div>`
+        gameOver.classList.add('game-over')
+        document.querySelector('body').appendChild(gameOver)
     }
 
     preload() {
         // this.backgroundMusicStart = loadSound('')
-        this.backgroundMusicFight = loadSound('assets/sounds/background/DubStepDropBoom.mp3')
-        // this.backgroundMusicEnd = loadSound('')
         this.background = loadImage('assets/background_retro-futurism.jpg')
-
+        
         this.enemyImageEasy = loadImage('assets/Lizard_1.png')
         this.enemyImageMedium = loadImage('assets/Sheep_1.png')
         this.enemyImageHard = loadImage('assets/Spider_1.png')
         this.bulletImage = loadImage('assets/LaserBall.png')
         this.alienShipImage = loadImage('assets/AlienGun.png')
-
+        
         this.soundGunFire = loadSound('assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
         this.soundLooseLife = loadSound('assets/sounds/hurt.wav')
         this.soundEnemyHit = loadSound('assets/sounds/Enemy hit.mp3')
+        this.backgroundMusicFight = loadSound('assets/sounds/background/DubStepDropBoom.mp3')
+        this.backgroundMusicEnd = loadSound('assets/sounds/background/RhytmicBounceA.mp3')
     }
 }
