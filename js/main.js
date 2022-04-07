@@ -16,6 +16,7 @@ function draw() {
 	if (game.life > -1){
 		game.draw()
 		game.checkHit()
+		game.increaseDifficulty()
 	}
 }
 

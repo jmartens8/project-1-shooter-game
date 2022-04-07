@@ -9,23 +9,24 @@ class Game {
         this.ammo = 12
         this.life = 6
         this.gamePoints = 0
+
+        // difficulty adjustments:
+        this.speedEasy = 2
+        this.speedMedium = 4
+        this.speedHard = 8
+
+
+
     }
 
     setup() {
-        game.backgroundMusicFight.loop()
+        // game.backgroundMusicFight.loop()
     }
-
-    // playMusic(){
-    //     if (game.life >= 0){
-    //         // play background music in an infinite loop
-    //         game.backgroundMusicFight.play()
-    //         game.backgroundMusicFight.loop()
-    //     }
-    // }
 
     draw() {
         clear()
 
+        // console.log(frameCount);
         
 
         // draw background
@@ -34,22 +35,22 @@ class Game {
         // draw cursor image
         cursor('assets/crosshair177.png', 64, 64)
 
-        // add easy enemies
+        // add easy enemies (from the start)
         if (frameCount % 80 === 0) {
 			// add an enemy to the enemiesArr 
-			this.enemiesArr.push(new Enemy(200, 200, this.enemyImageEasy, 2, 'easy', 5))
+			this.enemiesArr.push(new Enemy(200, 200, this.enemyImageEasy, this.speedEasy, 'easy', 5))
 		}
 
-        // add medium enemies
-        if (frameCount % 140 === 0) {
+        // add medium enemies (after 550 frames)
+        if (frameCount >= 550 && frameCount % 140 === 0) {
 			// add an enemy to the enemiesArr 
-			this.enemiesArr.push(new Enemy(120, 120, this.enemyImageMedium, 4, 'medium', 10))
+			this.enemiesArr.push(new Enemy(120, 120, this.enemyImageMedium, this.speedMedium, 'medium', 10))
 		}
 
-        // add hard enemies
-        if (frameCount % 200 === 0) {
+        // add hard enemies (after 1200 frames)
+        if (frameCount >= 1200 && frameCount % 200 === 0) {
 			// add an enemy to the enemiesArr 
-			this.enemiesArr.push(new Enemy(100, 100, this.enemyImageHard, 8, 'hard', 30))
+			this.enemiesArr.push(new Enemy(100, 100, this.enemyImageHard, this.speedHard, 'hard', 30))
 		}
 
         // draw enemies from array
@@ -121,7 +122,6 @@ class Game {
         
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bulletImage))
-        console.log(frameCount);
     }
 
     reload(){
@@ -204,8 +204,43 @@ class Game {
         })
     }
 
+    increaseDifficulty() {
+
+        console.log(frameCount);
+
+        if (frameCount >= 1800){
+            this.speedEasy = 4
+            console.log('Speed Easy was increased!');
+            console.log(this.speedEasy);
+        }
+        if (frameCount >= 2300) {
+            this.speedMedium = 8
+            console.log('Speed Medium was increased!');
+            console.log(this.speedMedium);
+        }
+        if (frameCount >= 2500){
+            this.speedHard = 12
+            console.log('Speed Hard was increased!');
+            console.log(this.speedHard);
+        }
+        if (frameCount >= 3000){
+            this.speedEasy = 6
+            console.log('Speed Easy was increased again!');
+            console.log(this.speedEasy);
+        }
+        if (frameCount >= 3500) {
+            this.speedMedium = 10
+            console.log('Speed Medium was increased again!');
+            console.log(this.speedMedium);
+        }
+        if (frameCount >= 4000){
+            this.speedHard = 14
+            console.log('Speed Hard was increased again!');
+            console.log(this.speedHard);
+        }
+    }
+
     looseLife(){
-        console.log('looseLife wird ausgeführt');
         this.life --
         this.soundLooseLife.play()
 
@@ -219,16 +254,13 @@ class Game {
         document.querySelector('.life').appendChild(emptyLife)
 
         if (this.life < 0){
-            console.log('gameover');
             game.gameOver()
         }
     }
 
     gameOver (){
-        this.backgroundMusicFight.stop()
-
-        this.backgroundMusicEnd.loop()
-
+        // this.backgroundMusicFight.stop()
+        // this.backgroundMusicEnd.loop()
         
         let gameOver = document.createElement('section')
         gameOver.innerHTML =`<div id="dead">You died!</div><div id="score">Score: ${this.gamePoints}</div><div><img src="https://media.giphy.com/media/l378BzHA5FwWFXVSg/giphy.gif" alt="rick and morty"></div>`
