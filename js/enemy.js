@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(width, heigth, image, speed, type){
+    constructor(width, heigth, image, speed, type, points){
         this.enemyWidth = width
         this.enemyHeigth = heigth
         this.dead = false
@@ -20,6 +20,7 @@ class Enemy {
         
         this.enemySpeed = speed
         this.enemyType = type
+        this.enemyPoints = points
 
         this.enemyCenterPosX = this.enemyPositionX + this.enemyWidth/2
         this.enemyCenterPosY = this.enemyPositionY + this.enemyHeigth/2

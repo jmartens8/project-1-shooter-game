@@ -1,10 +1,10 @@
 class Bullet {
     constructor(x, y, image){
         this.bulletWidth = 50
-        this.bulletHeigth = 50
+        this.bulletHeigth = 70
         this.dead = false
         
-        this.speed = 25
+        this.speed = 30
         this.r = 5
         this.startX = (gameWidth / 2) - 30
         this.startY = gameHeigth - 120 // -110 sind die Anpassungen, dass die Kugeln gut aus der Kanone kommen
