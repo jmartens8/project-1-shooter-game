@@ -309,7 +309,7 @@ class Game {
     }
 
     gameOver (){
-        // this.backgroundMusicFight.stop()
+        this.backgroundMusicFight.stop()
         stop()
         this.backgroundMusicEnd.loop()
         
