@@ -20,6 +20,7 @@ class Bullet {
     }
 
     draw(){
+        
         // console.log('bullet drawn');
         // console.log(this.startX);
         // console.log(this.startY);

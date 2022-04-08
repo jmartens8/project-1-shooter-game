@@ -12,6 +12,7 @@ class AlienShip {
     }
 
     draw() {
+        
         push()
 
         translate(795, 900);

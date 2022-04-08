@@ -116,12 +116,19 @@ class Game {
     shoot(){
         this.ammo --
         this.soundGunFire.play()
-
-        // remove a bullet from the html div
-        document.querySelector('.ammo :nth-child(1)').remove()
         
         // add bullets to the array
         this.bulletsArr.push(new Bullet(mouseX,mouseY,this.bulletImage))
+
+        // remove a bullet from the html div
+        document.querySelector('.ammo :nth-child(1)').remove()
+
+        // show messge to reload
+        if (this.ammo === 0){
+            console.log('ammo ist Null');
+            document.querySelector('.ammo').innerHTML = `<div><h2>Press r to reload</h2></div>`
+        }
+        
     }
 
     reload(){
@@ -167,7 +174,8 @@ class Game {
     </div>`
     }
 
-    checkHit(){       
+    checkHit(){
+            
         this.enemiesArr.forEach(enemy => {         
             this.bulletsArr.forEach(bullet => {
                 if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
@@ -206,7 +214,7 @@ class Game {
 
     increaseDifficulty() {
 
-        console.log(frameCount);
+        // console.log(frameCount);
 
         if (frameCount >= 1800){
             this.speedEasy = 4
