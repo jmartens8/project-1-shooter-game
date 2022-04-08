@@ -20,7 +20,14 @@ class Game {
     }
 
     setup() {
+        // play background music
         game.backgroundMusicFight.loop()
+
+        // set text parameters
+        textFont(this.myFont);
+        textSize(80);
+        textAlign(CENTER, CENTER);
+        fill(255, 255, 255)
     }
 
     draw() {
@@ -214,35 +221,66 @@ class Game {
 
     increaseDifficulty() {
 
-        // console.log(frameCount);
+        console.log(frameCount);
+
+        if (frameCount >= 0){
+            this.speedEasy = 4
+            if (0 < frameCount && frameCount < 200){
+                text('Level 1', gameWidth/2, 350)
+            }
+        }
 
         if (frameCount >= 1800){
             this.speedEasy = 4
+            if (1800 < frameCount && frameCount < 2000){
+                text('Level 2', gameWidth/2, 350)
+            }
+
             console.log('Speed Easy was increased!');
             console.log(this.speedEasy);
         }
-        if (frameCount >= 2300) {
+
+        if (frameCount >= 2700) {
             this.speedMedium = 8
+            if (2300 < frameCount && frameCount < 2500){
+                text('Level 3', gameWidth/2, 350)
+            }
             console.log('Speed Medium was increased!');
             console.log(this.speedMedium);
         }
-        if (frameCount >= 2500){
+
+        if (frameCount >= 3400){
             this.speedHard = 12
+            if (3400 < frameCount && frameCount < 3600){
+                text('Level 4', gameWidth/2, 350)
+            }
             console.log('Speed Hard was increased!');
             console.log(this.speedHard);
         }
-        if (frameCount >= 3000){
+
+        if (frameCount >= 3800){
             this.speedEasy = 6
+            if (3800 < frameCount && frameCount < 4000){
+                text('Level 5', gameWidth/2, 350)
+            }
             console.log('Speed Easy was increased again!');
             console.log(this.speedEasy);
         }
-        if (frameCount >= 3500) {
+
+        if (frameCount >= 4500) {
             this.speedMedium = 10
+            if (4500 < frameCount && frameCount < 4700){
+                text('Level 6', gameWidth/2, 350)
+            }
             console.log('Speed Medium was increased again!');
             console.log(this.speedMedium);
         }
-        if (frameCount >= 4000){
+
+        if (frameCount >= 5000){
             this.speedHard = 14
+            if (5000 < frameCount && frameCount < 5200){
+                text('Good Luck', gameWidth/2, 350)
+            }
             console.log('Speed Hard was increased again!');
             console.log(this.speedHard);
         }
@@ -293,5 +331,7 @@ class Game {
         this.soundEnemyHit = loadSound('assets/sounds/Enemy hit.mp3')
         this.backgroundMusicFight = loadSound('assets/sounds/background/DubStepDropBoom.mp3')
         this.backgroundMusicEnd = loadSound('assets/sounds/background/RhytmicBounceA.mp3')
+
+        this.myFont = loadFont('assets/ethnocentric/ethnocentric\ rg\ it.otf')
     }
 }
