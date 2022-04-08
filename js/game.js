@@ -334,7 +334,7 @@ class Game {
         this.soundGunEmpty = loadSound('assets/sounds/LaserEmpty.mp3')
         this.soundReload = loadSound('assets/sounds/Pushing-Magazine-Into-Gun-www.fesliyanstudios.com.mp3')
         this.soundLooseLife = loadSound('assets/sounds/hurt.wav')
-        this.soundEnemyHit = loadSound('assets/sounds/Enemy hit.mp3')
+        this.soundEnemyHit = loadSound('assets/sounds/Explosion 112.wav')
         this.backgroundMusicFight = loadSound('assets/sounds/background/DubStepDropBoom.mp3')
         this.backgroundMusicEnd = loadSound('assets/sounds/background/RhytmicBounceA.mp3')
 
