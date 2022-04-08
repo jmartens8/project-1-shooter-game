@@ -328,7 +328,7 @@ class Game {
         this.enemyImageHard = loadImage('assets/Spider_1.png')
         this.bulletImage = loadImage('assets/LaserBall.png')
         this.alienShipImage = loadImage('assets/AlienGun.png')
-        this.enemyImageDead = loadImage('/assets/YQDj.gif')
+        this.enemyImageDead = loadImage('assets/YQDj.gif')
         
         this.soundGunFire = loadSound('assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('assets/sounds/LaserEmpty.mp3')
