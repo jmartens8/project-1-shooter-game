@@ -14,9 +14,6 @@ class Game {
         this.speedEasy = 2
         this.speedMedium = 4
         this.speedHard = 8
-
-
-
     }
 
     setup() {
@@ -132,7 +129,7 @@ class Game {
 
         // show messge to reload
         if (this.ammo === 0){
-            console.log('ammo ist Null');
+            // console.log('ammo ist Null');
             document.querySelector('.ammo').innerHTML = `<div><h2>Press r to reload</h2></div>`
         }
         
@@ -185,12 +182,19 @@ class Game {
             
         this.enemiesArr.forEach(enemy => {         
             this.bulletsArr.forEach(bullet => {
-                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius)) {
-                    enemy.dead = true
+                if (collideCircleCircle(enemy.enemyCenterPosX, enemy.enemyCenterPosY, enemy.hitBoxRadius, bullet.hitBoxCenterX, bullet.hitBoxCenterY, bullet.hitBoxRadius) && enemy.hit === false) {
+                    enemy.hit = true
                     bullet.dead = true
+                    
+                    // delay that the enemy is dead and therefore will be removed from the array and not drawn anylonger
+                    setTimeout(() => {enemy.dead = true}, 1000)
+
+                    // change picture of dead enemy
+                    enemy.enemyImage = this.enemyImageDead
 
                     //play sound
                     this.soundEnemyHit.play()
+
 
                     // add the points for each enemy to the score in the html
                     this.gamePoints += enemy.enemyPoints
@@ -221,7 +225,7 @@ class Game {
 
     increaseDifficulty() {
 
-        console.log(frameCount);
+        // console.log(frameCount);
 
         if (frameCount >= 0){
             this.speedEasy = 4
@@ -236,8 +240,8 @@ class Game {
                 text('Level 2', gameWidth/2, 350)
             }
 
-            console.log('Speed Easy was increased!');
-            console.log(this.speedEasy);
+            // console.log('Speed Easy was increased!');
+            // console.log(this.speedEasy);
         }
 
         if (frameCount >= 2700) {
@@ -245,8 +249,8 @@ class Game {
             if (2300 < frameCount && frameCount < 2500){
                 text('Level 3', gameWidth/2, 350)
             }
-            console.log('Speed Medium was increased!');
-            console.log(this.speedMedium);
+            // console.log('Speed Medium was increased!');
+            // console.log(this.speedMedium);
         }
 
         if (frameCount >= 3400){
@@ -254,8 +258,8 @@ class Game {
             if (3400 < frameCount && frameCount < 3600){
                 text('Level 4', gameWidth/2, 350)
             }
-            console.log('Speed Hard was increased!');
-            console.log(this.speedHard);
+            // console.log('Speed Hard was increased!');
+            // console.log(this.speedHard);
         }
 
         if (frameCount >= 3800){
@@ -263,8 +267,8 @@ class Game {
             if (3800 < frameCount && frameCount < 4000){
                 text('Level 5', gameWidth/2, 350)
             }
-            console.log('Speed Easy was increased again!');
-            console.log(this.speedEasy);
+            // console.log('Speed Easy was increased again!');
+            // console.log(this.speedEasy);
         }
 
         if (frameCount >= 4500) {
@@ -272,8 +276,8 @@ class Game {
             if (4500 < frameCount && frameCount < 4700){
                 text('Level 6', gameWidth/2, 350)
             }
-            console.log('Speed Medium was increased again!');
-            console.log(this.speedMedium);
+            // console.log('Speed Medium was increased again!');
+            // console.log(this.speedMedium);
         }
 
         if (frameCount >= 5000){
@@ -281,8 +285,8 @@ class Game {
             if (5000 < frameCount && frameCount < 5200){
                 text('Good Luck', gameWidth/2, 350)
             }
-            console.log('Speed Hard was increased again!');
-            console.log(this.speedHard);
+            // console.log('Speed Hard was increased again!');
+            // console.log(this.speedHard);
         }
     }
 
@@ -305,7 +309,8 @@ class Game {
     }
 
     gameOver (){
-        this.backgroundMusicFight.stop()
+        // this.backgroundMusicFight.stop()
+        stop()
         this.backgroundMusicEnd.loop()
         
         let gameOver = document.createElement('section')
@@ -323,6 +328,7 @@ class Game {
         this.enemyImageHard = loadImage('assets/Spider_1.png')
         this.bulletImage = loadImage('assets/LaserBall.png')
         this.alienShipImage = loadImage('assets/AlienGun.png')
+        this.enemyImageDead = loadImage('/assets/YQDj.gif')
         
         this.soundGunFire = loadSound('assets/sounds/laser-gun-19sf.mp3')
         this.soundGunEmpty = loadSound('assets/sounds/LaserEmpty.mp3')

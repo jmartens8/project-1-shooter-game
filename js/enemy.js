@@ -3,6 +3,7 @@ class Enemy {
         this.enemyWidth = width
         this.enemyHeigth = heigth
         this.dead = false
+        this.hit = false
 
         this.enemyImage = image
         this.enemyFlightDirection = Math.round(Math.random())
@@ -34,7 +35,7 @@ class Enemy {
 
 
         // flying from left to right
-        if (this.enemyFlightDirection === 0) { 
+        if (this.enemyFlightDirection === 0 && this.hit === false) { 
             this.enemyPositionX += 1 * this.enemySpeed
             this.enemyCenterPosX += 1 * this.enemySpeed // NEU NEU NEU
             // console.log(`enemy position x: ${this.enemyPositionX} // enemy centerPosX ${this.enemyCenterPosX}`);
@@ -42,7 +43,7 @@ class Enemy {
         }
 
         // flying from right to left
-        if (this.enemyFlightDirection === 1) { 
+        if (this.enemyFlightDirection === 1 && this.hit === false) { 
             this.enemyPositionX -= 1 * this.enemySpeed
             this.enemyCenterPosY -= 1 * this.enemySpeed // NEU NEU NEU
         }
